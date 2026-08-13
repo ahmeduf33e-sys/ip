@@ -1,0 +1,13 @@
+{
+  "name": "Ahmed Dev_clone",
+  "version": "1.0.0",
+  "description": "Ahmed KeyMaster - Complete VM Lua Encryption Platform",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.19.2",
+    "cors": "^2.8.5"
+  }
+}

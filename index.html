@@ -1,0 +1,1133 @@
+<!DOCTYPE html>
+<html dir="rtl" lang="ar">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Ahmed KeyMaster — منصة تشفير وترخيص سكربتات فايف ام</title>
+<link href="logo.png" rel="icon" type="image/png"/>
+<link href="logo.png" rel="shortcut icon" type="image/png"/>
+<link href="logo.png" rel="apple-touch-icon"/>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800;900&family=Outfit:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link href="style.css" rel="stylesheet"/>
+</head>
+<body>
+<div class="grid-bg"></div>
+<!-- ============ LANDING SCREEN ============ -->
+<div class="screen" id="screen-auth">
+<header class="landing-header">
+<div class="wrap nav">
+<div class="logo"><img alt="Ahmed dev" class="logo-img" src="logo.png"/><span class="brand gr">Ahmed Dev</span></div>
+<div class="nav-right">
+<button class="lang-btn" id="btn-lang-landing">EN</button>
+<button class="btn ghost" id="landing-login">تسجيل الدخول</button>
+<button class="btn primary" id="landing-register">إنشاء حساب</button>
+</div>
+</div>
+</header>
+<div class="landing-hero">
+<img alt="Ahmed Dev banner" class="hero-banner" src="banner.png"/>
+<div class="hero-badge">محرك VM بنمط Luraph</div>
+<h1>اشترك، ارفع، و<u>أغلق على IP</u> سكربتك</h1>
+<p>تختار الـ IP اللي يسمح تشغيل الملف عليه فقط. التشفير بنمط الآلة الحاسوبية (VM) المستخدم في ليراف — متعدد الطبقات ويصعب فكّه. مفتاح الحماية سرّي داخل الخادم، ما يظهر الـ IP في الكود أبداً.</p>
+<div class="hero-cta">
+<button class="btn primary" id="landing-register2">🚀 ابدأ الآن</button>
+<button class="btn ghost" id="landing-login2">لدي حساب — دخول</button>
+</div>
+</div>
+<div class="wrap landing-sections">
+
+<section class="whyus" id="whyus">
+<div class="sec-head">
+<h2 class="sec-title">ليش <span class="gr">Ahmed Dev</span>؟</h2>
+<p class="sec-sub">حماية بنمط الآلة الحاسوبية (VM) المستخدمة في ليراف — متعددة الطبقات ويصعب فكّها</p>
+</div>
+<div class="whyus-grid">
+<div class="why card">
+<div class="why-ic">🧠</div>
+<h3>تشفير بنمط VM</h3>
+<p>الكود يتحول إلى آلة حاسوبية مشفرة متعددة الطبقات مع ربط بالأرتفاكت (Artifact) ليمنع التلاعب بالنسخ القديمة.</p>
+</div>
+<div class="why card">
+<div class="why-ic">🚫</div>
+<h3>ترخيص Fail-closed</h3>
+<p>إذا فشل التحقق لأي سبب كان — السكربت يتوقف تماماً ولا يفتح (مغلق افتراضياً عند أي خطأ).</p>
+</div>
+<div class="why card">
+<div class="why-ic">🎮</div>
+<h3>توافق ESX/QBCore</h3>
+<p>متوافق مع الأطر الأكثر شيوعاً في فايف ام، يشتغل مع سكرباتك الحالية بدون تعديل.</p>
+</div>
+<div class="why card">
+<div class="why-ic">💻</div>
+<h3>ربط بـ HWID</h3>
+<p>تثبيت الترخيص على جهاز العميل يمنع سرقة الملف أو مشاركته مع آخرين.</p>
+</div>
+<div class="why card">
+<div class="why-ic">📡</div>
+<h3>مراقبة مباشرة</h3>
+<p>سجلات تحقق لحظية وتنبيهات فورية على الديسكورد لكل محاولة دخول.</p>
+</div>
+<div class="why card">
+<div class="why-ic">🏷️</div>
+<h3>منصة موثقة بالإصدارات</h3>
+<p>توثيق رسمي لكل إصدار، سجل تغييرات شفاف، وتحديثات مستمرة ومستقرة.</p>
+</div>
+</div>
+</section>
+</div>
+<footer class="site-footer">
+<div class="wrap">
+<div class="footer-logo"><span class="brand">Ahmed Dev</span></div>
+<div class="footer-text">جميع الحقوق محفوظة © لمتجر <b>Ahmed Dev</b></div>
+<a class="btn primary discord-btn" href="https://discord.gg/lcc8" id="footer-discord" rel="noopener" target="_blank">💬 سيرفر الديسكورد</a>
+</div>
+</footer>
+<!-- Auth modal -->
+<div class="modal-overlay" id="auth-modal" style="display:none">
+<div class="modal auth-box">
+<button class="modal-close" id="auth-close">✕</button>
+<div class="auth-modal-head">
+<img alt="Ahmed Dev" src="logo.png"/>
+<div>
+<div class="brand">Ahmed Dev</div>
+<p>سجل دخولك أو أنشئ حساباً جديداً</p>
+</div>
+</div>
+<div class="auth-tabs" id="auth-tabs">
+<button class="auth-tab active" data-aftab="code">🎫 كود التفعيل</button>
+<button class="auth-tab" data-aftab="login">🔑 دخول الأونر</button>
+<button class="auth-tab" data-aftab="register" style="display:none">👑 إنشاء حساب الأونر</button>
+</div>
+<form class="auth-form" id="f-code">
+<div class="field">
+<label>كود التفعيل</label>
+<input id="code-input" placeholder="KEY-XXXXXX-XXXXXX" type="text" autocomplete="off"/>
+</div>
+<button class="btn primary block" type="submit">✅ تفعيل ودخول</button>
+<div class="auth-err" id="code-err"></div>
+</form>
+<form class="auth-form" id="f-login" style="display:none">
+<div class="field">
+<label>الإيميل</label>
+<input autocomplete="username" id="login-user" type="email"/>
+</div>
+<div class="field">
+<label>كلمة المرور</label>
+<input autocomplete="current-password" id="login-pass" type="password"/>
+</div>
+<button class="btn primary block" type="submit">دخول</button>
+<div class="auth-err" id="login-err"></div>
+</form>
+<form class="auth-form" id="f-register" style="display:none">
+<div class="field">
+<label>الإيميل</label>
+<input autocomplete="email" id="reg-user" type="email"/>
+</div>
+<div class="field">
+<label>كلمة المرور</label>
+<input autocomplete="new-password" id="reg-pass" type="password"/>
+</div>
+<button class="btn primary block" id="btn-register" type="submit">إنشاء حساب الأونر</button>
+<div class="auth-err" id="reg-err"></div>
+</form>
+</div>
+</div>
+</div>
+<!-- ============ KEYMASTER PANEL ============ -->
+<div class="km" id="screen-app" style="display:none">
+<aside class="sb" id="sb">
+<div class="sb-head">
+<img alt="Ahmed Dev" class="sb-logo" src="logo.png"/>
+<div class="sb-brand">Ahmed Dev <span>KeyMaster</span></div>
+<button class="sb-hamb" id="sb-hamb" title="القائمة">☰</button>
+</div>
+<nav class="sb-nav" id="sb-nav">
+<div class="sb-sec">إدارة التراخيص</div>
+<button class="sb-item" data-page="dashboard">🏠 الرئيسية</button>
+<button class="sb-item" data-page="files">📁 الملفات</button>
+<button class="sb-item" data-page="activations">🔑 التفعيلات</button>
+<button class="sb-item admin-only" data-page="branding">🏷️ شعارات وحقوق<span class="sb-badge" data-r="a">أدمن</span></button>
+<button class="sb-item admin-only" data-page="webhooks">🔌 الويب هوكس<span class="sb-badge" data-r="a">أدمن</span></button>
+<div class="sb-sec">المتجر والبيع</div>
+<button class="sb-item admin-only owner-only" data-page="storeadmin">🛡️ إدارة المتجر<span class="sb-badge" data-r="o">أونر فقط</span></button>
+<div class="sb-sec">الأمان والمراقبة</div>
+<button class="sb-item admin-only" data-page="logs">📜 السجلات<span class="sb-badge" data-r="a">أدمن</span></button>
+<button class="sb-item admin-only" data-page="blacklist">🚫 القائمة السوداء<span class="sb-badge" data-r="a">أدمن</span></button>
+<button class="sb-item admin-only" data-page="audit">🕵️ سجل التدقيق<span class="sb-badge" data-r="a">أدمن</span></button>
+<div class="sb-sec">الأدوات</div>
+<button class="sb-item" data-page="project">🛠️ مشفر المشاريع</button>
+<button class="sb-item" data-page="api">📘 توثيق API</button>
+<div class="sb-sec" data-nosub="">الحساب</div>
+<button class="sb-item" data-page="notifications">🔔 الإشعارات</button>
+<button class="sb-item" data-page="subscription">💳 اشتراكي</button>
+<button class="sb-item" data-page="support">🎧 الدعم الفني</button>
+<button class="sb-item" data-page="settings">⚙️ الإعدادات</button>
+<button class="sb-item" data-page="changelog">📋 سجل التحديثات</button>
+<button class="sb-item admin-only owner-only" data-page="system">🖥️ حالة النظام<span class="sb-badge" data-r="o">أونر فقط</span></button>
+</nav>
+<div class="sb-foot">
+<div class="sb-user" id="user-chip"></div>
+<button class="sb-logout" id="btn-logout">⏻ خروج</button>
+</div>
+</aside>
+<main class="km-main">
+<header class="km-top">
+<div class="km-title">
+<button class="km-burger" id="km-burger">☰</button>
+<h1 id="page-title">الرئيسية</h1>
+<div class="km-crumb" id="page-crumb">إدارة التراخيص / الرئيسية</div>
+</div>
+<div class="km-top-actions">
+<span class="km-bot-pill" id="bot-status-pill" style="display:none"><span class="km-dot"></span><b id="bot-status-txt"></b></span>
+<button class="lang-btn" id="btn-lang">EN</button>
+</div>
+</header>
+<div class="km-body">
+<!-- ===== PAGE: DASHBOARD ===== -->
+<section class="km-page" id="page-dashboard">
+<div class="dash-stats" id="dash-stats"></div>
+<div class="grid2 dash-grid">
+<div class="card km-card">
+<h3>🤖 حالة البوت</h3>
+<div class="bot-status-box">
+<div class="bot-avatar">🛡️</div>
+<div class="bot-info">
+<div class="bot-name">Ahmed KeyMaster <span class="bot-tag">BOT</span></div>
+<div class="bot-state" id="bot-state">جاري الفحص...</div>
+</div>
+<div class="bot-side" id="bot-side"></div>
+</div>
+<div class="bot-stats" id="bot-stats"></div>
+</div>
+<div class="card km-card">
+<h3>⚡ وصول سريع</h3>
+<div class="quick-grid">
+<button class="quick-card" data-goto="project">🛡️<br/>الحماية</button>
+<button class="quick-card" data-goto="api">🔌<br/>API</button>
+<button class="quick-card" data-goto="logs">📊<br/>المراقبة</button>
+<button class="quick-card" data-goto="activations">🔑<br/>التفعيلات</button>
+<button class="quick-card" data-goto="support">🎧<br/>الدعم</button>
+</div>
+</div>
+</div>
+<div class="card km-card" style="margin-top:20px">
+<h3>📈 نبض المتجر <span class="muted small">(آخر 14 يوم)</span></h3>
+<div id="pulse-wrap"></div>
+</div>
+</section>
+<!-- ===== PAGE: FILES ===== -->
+<section class="km-page" id="page-files" style="display:none">
+<div class="page-toolbar">
+</div>
+<div class="card km-card" style="margin-top:16px">
+<h3>📁 ملفاتك</h3>
+<div class="table-scroll">
+<table class="lic-table">
+<thead><tr>
+<th>اسم الملف</th><th>النوع</th><th>المالك</th><th>IP</th>
+<th>الحجم</th><th>تاريخ التشفير</th><th>الحالة</th><th>إجراءات</th>
+</tr></thead>
+<tbody id="files-tbody"><tr><td class="lic-empty" colspan="8">جاري التحميل...</td></tr></tbody>
+</table>
+</div>
+</div>
+</section>
+<!-- ===== PAGE: ACTIVATIONS ===== -->
+<section class="km-page" id="page-activations" style="display:none">
+<div class="filter-bar">
+<input id="act-search" placeholder="🔍 ابحث بالـ IP أو الـ Discord ID أو الـ HWID أو اسم العميل..." type="text"/>
+<select id="act-status">
+<option value="">كل الحالات</option>
+<option value="active">نشط</option>
+<option value="expired">منتهي</option>
+<option value="revoked">مُلغى</option>
+</select>
+</div>
+<div class="card km-card" style="margin-top:16px">
+<h3>🔑 السكربتات المشفّرة والتفعيلات</h3>
+<div class="table-scroll">
+<table class="lic-table">
+<thead><tr>
+<th>اسم السكربت</th><th>معرّف الملف</th><th>المالك</th>
+<th>IP المسموح</th><th>تاريخ التشفير</th><th>حالة التفعيل</th><th>إجراءات</th>
+</tr></thead>
+<tbody id="acts-tbody"><tr><td class="lic-empty" colspan="7">جاري التحميل...</td></tr></tbody>
+</table>
+</div>
+</div>
+</section>
+<!-- ===== PAGE: BRANDING ===== -->
+<section class="km-page" id="page-branding" style="display:none">
+<div class="grid2 dash-grid">
+<div class="card km-card">
+<h3>🏷️ إعدادات الكونسول (Console Branding — Ahmed Dev)</h3>
+<div class="field">
+<label>الشعار المخصص <small>(نص يظهر في كونسول السيرفر عند التشغيل)</small></label>
+<input id="br-text" placeholder="Ahmed Dev [https://discord.gg/cfw3]" type="text"/>
+</div>
+<div class="field">
+<label>شكل الفواصل (Border Style)</label>
+<div class="border-options" id="br-borders"></div>
+</div>
+<div class="field">
+<label>رسالة النجاح في الـ CMD <small>(عند نجاح التحقق)</small></label>
+<input id="br-ok" placeholder="License verified successfully" type="text"/>
+</div>
+<div class="field">
+<label>رسالة الفشل في الـ CMD <small>(عند فشل التحقق)</small></label>
+<input id="br-fail" placeholder="License verification failed" type="text"/>
+</div>
+<button class="btn primary" id="btn-save-branding">💾 حفظ الإعدادات</button>
+<div class="mini" id="br-msg"></div>
+</div>
+<div class="card km-card">
+<h3>🖥️ معاينة الكونسول <span class="muted small">(Console Output)</span></h3>
+<div class="console-box" id="console-preview"></div>
+<div class="mini">هكذا سيظهر الشعار في سطر الأوامر عند تشغيل السيرفر.</div>
+</div>
+</div>
+</section>
+<!-- ===== PAGE: WEBHOOKS ===== -->
+<section class="km-page" id="page-webhooks" style="display:none">
+<div class="card km-card">
+<h3>🔌 الويب هوك</h3>
+<p class="muted" style="margin-bottom:16px">اربط قناة ديسكورد ليصلك تنبيه لكل تفعيل جديد أو طلب شراء عبر الويب هوك.</p>
+<div class="field">
+<label>رابط الويب هوك (Webhook URL)</label>
+<input id="wh-url" placeholder="https://discord.com/api/webhooks/..." type="text"/>
+</div>
+<div class="row">
+<button class="btn primary" id="btn-save-webhook">💾 حفظ</button>
+<button class="btn ghost" id="btn-test-webhook">📨 إرسال رسالة تجريبية</button>
+</div>
+<div class="mini" id="wh-msg"></div>
+</div>
+</section>
+<!-- ===== PAGE: LOGS ===== -->
+<section class="km-page" id="page-logs" style="display:none">
+<div class="km-subtabs" id="logs-tabs">
+<button class="tab active" data-ltab="enc">📄 عمليات التشفير</button>
+<button class="tab" data-ltab="ord">🧾 طلبات الشراء</button>
+</div>
+<div class="card km-card" style="margin-top:16px">
+<h3 id="logs-title">📄 عمليات التشفير</h3>
+<div class="table-scroll">
+<table class="lic-table">
+<thead id="logs-thead"></thead>
+<tbody id="logs-tbody"></tbody>
+</table>
+</div>
+</div>
+</section>
+<!-- ===== PAGE: BLACKLIST ===== -->
+<section class="km-page" id="page-blacklist" style="display:none">
+<div class="card km-card">
+<h3>🚫 إضافة إلى القائمة السوداء</h3>
+<div class="row">
+<select id="bl-kind" style="max-width:170px">
+<option value="ip">🌐 IP</option>
+<option value="hwid">💻 HWID</option>
+<option value="discord_id">🎮 Discord ID</option>
+</select>
+<div class="field" style="flex:1;margin-bottom:0"><input id="bl-value" placeholder="القيمة (مثال: 51.158.45.22)" type="text"/></div>
+<div class="field" style="flex:1;margin-bottom:0"><input id="bl-reason" placeholder="السبب (اختياري)" type="text"/></div>
+<button class="btn primary" id="btn-add-bl">＋ إضافة</button>
+</div>
+<div class="mini" id="bl-msg"></div>
+</div>
+<div class="card km-card" style="margin-top:16px">
+<h3>🚫 المحظورون</h3>
+<div class="table-scroll">
+<table class="lic-table">
+<thead><tr><th>النوع</th><th>القيمة</th><th>السبب</th><th>التاريخ</th><th></th></tr></thead>
+<tbody id="bl-tbody"><tr><td class="lic-empty" colspan="5">جاري التحميل...</td></tr></tbody>
+</table>
+</div>
+</div>
+</section>
+<!-- ===== PAGE: AUDIT ===== -->
+<section class="km-page" id="page-audit" style="display:none">
+<div class="card km-card">
+<h3>🕵️ سجل التدقيق</h3>
+<div class="table-scroll">
+<table class="lic-table">
+<thead><tr><th>الوقت</th><th>المستخدم</th><th>الإجراء</th><th>التفاصيل</th></tr></thead>
+<tbody id="audit-tbody"><tr><td class="lic-empty" colspan="4">جاري التحميل...</td></tr></tbody>
+</table>
+</div>
+</div>
+</section>
+<!-- ===== PAGE: STORE ADMIN (legacy) ===== -->
+<section class="km-page" id="page-storeadmin" style="display:none">
+<div class="admin-tabs" id="store-tabs">
+<button class="tab active" data-atab="orders">💬 طلبات الدفع</button>
+<button class="tab" data-atab="subscribers">✅ المشتركين</button>
+<button class="tab" data-atab="users">👥 المستخدمين</button>
+<button class="tab" data-atab="packages">📦 الباكجات</button>
+<button class="tab" data-atab="codes">🎫 أكواد التفعيل</button>
+<button class="tab" data-atab="reviews">⭐ التقييمات</button>
+</div>
+<div class="apane" id="apane-orders"></div>
+<div class="apane" id="apane-subscribers" style="display:none"></div>
+<div class="apane" id="apane-users" style="display:none"></div>
+<div class="apane" id="apane-packages" style="display:none"></div>
+<div class="apane" id="apane-codes" style="display:none"></div>
+<div class="apane" id="apane-reviews" style="display:none"></div>
+</section>
+<!-- ===== PAGE: PROJECT ENCRYPTOR ===== -->
+<section class="km-page" id="page-project" style="display:none">
+<div class="hero compact">
+<h1>مشفر <span class="gr">المشاريع</span></h1>
+<p>ارفع ملف Lua (client/server) أو الصق الكود، ثم شفّر. الـ IP اختياري — اتركه فاضي ليشتغل السكربت عند أي شخص.</p>
+</div>
+<div class="grid2">
+<div class="card">
+<h3>📄 إدخال الملف</h3>
+<div class="sub">اسحب ملفك أو الصق الكود مباشرة.</div>
+<div class="dropzone" id="dropzone">اسحب ملف الـ Lua هنا أو اضغط للاختيار</div>
+<input accept=".lua,.txt,.js,.py,.html,.css" id="file-input" style="display:none" type="file"/>
+<div class="mini">أو الصق الكود مباشرة:</div>
+<textarea id="file-src" placeholder="ضع كود Lua هنا..." rows="8"></textarea>
+<div class="row">
+<div class="field" style="flex:1">
+<label>لغة / نوع الملف</label>
+<select id="file-type">
+<option value="lua_client">🖥️ Lua — Client (FiveM)</option>
+<option value="lua_server">🖧 Lua — Server (FiveM)</option>
+<option value="html">🌐 HTML</option>
+<option value="javascript">⚡ JavaScript (Node / Web)</option>
+<option value="css">🎨 CSS</option>
+<option value="python">🐍 Python (بوتات / سكربتات)</option>
+</select>
+</div>
+<div class="field" id="fld-ip" style="flex:1">
+<label>IP المسموح بالتشغيل <small>(اختياري — اتركه فاضي ليشتغل عند الجميع)</small></label>
+<input id="file-ip" placeholder="51.158.45.22" type="text"/>
+</div>
+</div>
+<button class="btn primary block" id="btn-encrypt">🔐 تشفير السكربت</button>
+<div class="mini" id="enc-msg"></div>
+</div>
+<div class="card">
+<h3>📦 النتيجة</h3>
+<div class="sub">استبدل ملفك الأصلي بهذا — نفس الشغل، بس الكود مخفي ومربوط بالـ IP.</div>
+<div id="enc-empty" style="text-align:center;padding:40px 10px;color:var(--muted)">
+<div style="font-size:44px;margin-bottom:12px">🗃️</div>
+<span>شفّر ملفك أولاً</span>
+</div>
+<div id="enc-result" style="display:none">
+<div class="pill" id="enc-pill"></div>
+<div class="enc-ips" id="enc-ips"></div>
+<div class="out-head">
+<span class="file" id="enc-name">client.lua</span>
+<div class="actions">
+<button class="btn ghost sm" id="btn-copy">📋 نسخ</button>
+<button class="btn ghost sm" id="btn-download">⬇️ تحميل</button>
+</div>
+</div>
+<pre id="pre-out"></pre>
+</div>
+</div>
+</div>
+</section>
+<!-- ===== PAGE: API DOCS ===== -->
+<section class="km-page" id="page-api" style="display:none">
+<div class="hero compact">
+<h1>توثيق <span class="gr">API</span></h1>
+<p>اربط سكربتك بمنصة Ahmed Dev عبر الواجهات التالية. كل الردود بصيغة JSON.</p>
+</div>
+<div class="card km-card">
+<h3>📘 الواجهات المتاحة</h3>
+<div class="api-row"><code>GET /api/reviews</code><span>تقييمات المتجر المنشورة (عام)</span></div>
+<div class="api-row"><code>GET /api/packages</code><span>الباقات المتاحة للشراء</span></div>
+<div class="api-row"><code>GET /api/me</code><span>معلومات حسابك الجارية وااشتراكاتك (يتطلب جلسة)</span></div>
+<div class="api-row"><code>POST /api/order</code><span>إرسال طلب شراء باكة عبر الديسكورد</span></div>
+<div class="api-row"><code>POST /api/redeem</code><span>تفعيل كود (IP-XXXXX-XXXXX)</span></div>
+<div class="api-row"><code>POST /api/encrypt</code><span>تشفير ملف وقفله على IP (يتطلب اشتراك نشط)</span></div>
+<div class="api-row"><code>GET /api/my-orders</code><span>سجل طلباتك</span></div>
+<div class="api-row"><code>POST /api/reviews</code><span>إضافة/تحديث تقييم (بعد الشراء)</span></div>
+</div>
+<div class="card km-card" style="margin-top:16px">
+<h3>💡 ملاحظات</h3>
+<div class="note">مفتاح الحماية والـ IP المسموح يُشفران داخل الخادم، ولا يظهران أبداً في الكود النهائي. تظل الـ IP المسموح مخزنة بشكل آمن ولا يمكن استخراجها من الملف المشفر.</div>
+</div>
+</section>
+<!-- ===== PAGE: NOTIFICATIONS ===== -->
+<section class="km-page" id="page-notifications" style="display:none">
+<div class="card km-card">
+<h3>🔔 إعلانات المنصة</h3>
+<div id="announce-box"><div class="lic-empty">لا توجد إعلانات حالياً.</div></div>
+</div>
+<div class="card km-card" style="margin-top:16px">
+<h3>⏳ تنبيهات اشتراكك</h3>
+<div id="notif-subs"></div>
+</div>
+</section>
+<!-- ===== PAGE: SUBSCRIPTION ===== -->
+<section class="km-page" id="page-subscription" style="display:none">
+<div class="hero compact">
+<h1>اشتراكي <span class="gr">والباقات</span></h1>
+<p>تابع حالة اشتراكك والمدة المتبقية عليه.</p>
+</div>
+<div class="card km-card" style="margin-bottom:20px">
+<h3>🎫 اشتراكاتي النشطة</h3>
+<div id="subs-list"></div>
+<div class="note" style="margin-top:14px">💡 الباكة <b>النشطة</b> عندك: <b id="sub-status">لا يوجد</b></div>
+</div>
+</section>
+<!-- ===== PAGE: SUPPORT ===== -->
+<section class="km-page" id="page-support" style="display:none">
+<div class="hero compact">
+<h1>الدعم <span class="gr">الفني</span></h1>
+<p>نحن هنا لمساعدتك — انضم لسيرفر الديسكورد وتواصل معنا مباشرة.</p>
+</div>
+<div class="card km-card" style="text-align:center;padding:34px">
+<div style="font-size:52px;margin-bottom:14px">🎧</div>
+<h3>سيرفر الديسكورد الرسمي</h3>
+<p class="muted" style="margin:10px auto 20px;max-width:420px">أسرع طريقة للتواصل مع الفريق. افتح تذكرة في قناة الدعم وسنرد عليك في أقرب وقت.</p>
+<a class="btn primary lg discord-btn" href="https://discord.gg/cfw3" id="support-discord" rel="noopener" target="_blank">💬 فتح سيرفر الديسكورد</a>
+</div>
+</section>
+<!-- ===== PAGE: SETTINGS ===== -->
+<section class="km-page" id="page-settings" style="display:none">
+<div class="card km-card">
+<h3>⚙️ إعدادات المنصة <small class="muted" id="st-admin-hint"></small></h3>
+<div class="field">
+<label>رابط الديسكورد <small>(يظهر للمستخدمين)</small></label>
+<input id="st-discord" type="text" value=""/>
+</div>
+<div class="field">
+<label>اسم المنصة</label>
+<input id="st-brand" type="text" value=""/>
+</div>
+<div class="field">
+<label>إعلان المنصة <small>(يظهر في صفحة الإشعارات)</small></label>
+<textarea id="st-announce" placeholder="اكتب أي إعلان مهم..." rows="3"></textarea>
+</div>
+<button class="btn primary" id="btn-save-settings">💾 حفظ</button>
+<div class="mini" id="st-msg"></div>
+</div>
+</section>
+<!-- ===== PAGE: CHANGELOG ===== -->
+<section class="km-page" id="page-changelog" style="display:none">
+<div class="hero compact">
+<h1>سجل <span class="gr">التحديثات</span></h1>
+<p>كل ما هو جديد في منصة Ahmed KeyMaster.</p>
+</div>
+<div class="card km-card">
+<div class="cl-item"><span class="cl-ver">v2.0</span><div><b>إطلاق لوحة KeyMaster</b><div class="muted">واجهة جديدة بالكامل مع Sidebar وإدارة ملفات وتفعيلات وشعار كونسول مخصص وقائمة سوداء وسجل تدقيق وحالة نظام.</div></div></div>
+<div class="cl-item"><span class="cl-ver">v1.9</span><div><b>التجربة المجانية</b><div class="muted">تشفير غير محدود لمدة 7 أيام عند التسجيل — بدون بطاقة.</div></div></div>
+<div class="cl-item"><span class="cl-ver">v1.8</span><div><b>تشفير بايثون محصّن</b><div class="muted">تشفير XOR متعدد الطبقات مع state machine ضد محاولات الفك بالذكاء الاصطناعي.</div></div></div>
+<div class="cl-item"><span class="cl-ver">v1.7</span><div><b>بوت الديسكورد</b><div class="muted">بوت يحذف روابط المتجر غير المصرح بها ويرسل بطاقة تعريفي احترافية.</div></div></div>
+<div class="cl-item"><span class="cl-ver">v1.0</span><div><b>الإطلاق الأول</b><div class="muted">محرك VM بنمط Luraph لتشفير سكربتات FiveM وقفلها على IP.</div></div></div>
+</div>
+</section>
+<!-- ===== PAGE: SYSTEM ===== -->
+<section class="km-page" id="page-system" style="display:none">
+<div class="stats-row" id="sys-stats"></div>
+<div class="card km-card">
+<h3>🖥️ تفاصيل الخادم</h3>
+<div class="sys-grid" id="sys-details"></div>
+</div>
+</section>
+</div>
+</main>
+</div>
+<!-- ===== FILES MODAL ===== -->
+<div class="modal-overlay" id="file-modal" style="display:none">
+<div class="modal km-modal">
+<button class="modal-close" id="file-modal-close">✕</button>
+<h3 id="file-modal-title">＋ إضافة ملف</h3>
+<div class="field">
+<label>اسم الملف</label>
+<input id="fm-name" placeholder="server.lua" type="text"/>
+</div>
+<div class="row">
+<div class="field" style="flex:1">
+<label>النوع</label>
+<select id="fm-type">
+<option value="FiveM Lua">🖥️ FiveM Lua</option>
+<option value="FiveM Lua Server">🖧 FiveM Lua (Server)</option>
+<option value="JavaScript">⚡ JavaScript</option>
+<option value="Python">🐍 Python</option>
+<option value="HTML">🌐 HTML</option>
+<option value="CSS">🎨 CSS</option>
+</select>
+</div>
+<div class="field" style="flex:1">
+<label>الفريم وورك</label>
+<input id="fm-framework" placeholder="ESX / QBCore / Standalone" type="text"/>
+</div>
+</div>
+<div class="row">
+<div class="field" style="flex:1">
+<label>الحد الأقصى <small>(Max)</small></label>
+<input id="fm-max" min="1" type="number" value="1"/>
+</div>
+<div class="field" style="flex:1">
+<label>IP المسموح بالتشغيل</label>
+<input id="fm-ip" placeholder="51.158.45.22" type="text"/>
+</div>
+</div>
+<div class="field">
+<label>رسالة الخطأ عند فشل الترخيص</label>
+<input id="fm-err" type="text" value="License verification failed"/>
+</div>
+<div class="row">
+<div class="field" style="flex:1">
+<label>رسالة النجاح <small>(CMD)</small></label>
+<input id="fm-ok" placeholder="License verified successfully" type="text"/>
+</div>
+<div class="field" style="flex:1">
+<label>رسالة الفشل <small>(CMD)</small></label>
+<input id="fm-fail" placeholder="License verification failed" type="text"/>
+</div>
+</div>
+<div class="field">
+<label>الكود المصدري <small>(Lua, JS, Python, JSON — حد أقصى 10MB)</small></label>
+<div class="dropzone" id="fm-dropzone">اسحب الملف هنا أو اضغط للاختيار</div>
+<input id="fm-file-input" style="display:none" type="file"/>
+<textarea id="fm-source" placeholder="ضع الكود هنا..." rows="7"></textarea>
+</div>
+<div class="row" style="margin-top:6px">
+<button class="btn primary" id="btn-file-save" style="flex:1">💾 حفظ الملف</button>
+<button class="btn ghost" id="btn-file-cancel">إلغاء</button>
+</div>
+<div class="mini" id="fm-msg"></div>
+<input id="fm-id" type="hidden"/>
+</div>
+</div>
+<!-- ===== ACTIVATION MODAL ===== -->
+<div class="modal-overlay" id="act-modal" style="display:none">
+<div class="modal km-modal">
+<button class="modal-close" id="act-modal-close">✕</button>
+<h3 id="act-modal-title">＋ إضافة تفعيل</h3>
+<div class="row">
+<div class="field" style="flex:1">
+<label>الملف</label>
+<select id="am-file"></select>
+</div>
+<div class="field" style="flex:1">
+<label>اسم العميل</label>
+<input id="am-client" placeholder="مثال: اسم السيرفر" type="text"/>
+</div>
+</div>
+<div class="row">
+<div class="field" style="flex:1">
+<label>النوع</label>
+<select id="am-type">
+<option value="FiveM">FiveM</option>
+<option value="Discord Bot">Discord Bot</option>
+<option value="Web">Web</option>
+<option value="Other">Other</option>
+</select>
+</div>
+<div class="field" style="flex:1">
+<label>تاريخ الانتهاء <small>(أيام — 0 = غير محدود)</small></label>
+<input id="am-days" min="0" type="number" value="30"/>
+</div>
+</div>
+<div class="field">
+<label>Discord ID</label>
+<input id="am-discord" placeholder="1272264388224618592" type="text"/>
+</div>
+<div class="row">
+<div class="field" style="flex:1">
+<label>IP</label>
+<input id="am-ip" placeholder="51.158.45.22" type="text"/>
+</div>
+<div class="field" style="flex:1">
+<label>HWID</label>
+<input id="am-hwid" placeholder="جهاز العميل (اختياري)" type="text"/>
+</div>
+</div>
+<div class="row" style="margin-top:6px">
+<button class="btn primary" id="btn-act-save" style="flex:1">💾 حفظ</button>
+<button class="btn ghost" id="btn-act-cancel">إلغاء</button>
+</div>
+<div class="mini" id="am-msg"></div>
+<input id="am-id" type="hidden"/>
+</div>
+</div>
+<div class="toast" id="toast"></div>
+<script>
+const state = { user: null, sub: null, packages: [], files: [], outCode: '', outName: 'script.lua' };
+const $ = id => document.getElementById(id);
+let currentPage = 'dashboard';
+const IS_OWNER = () => state.user && state.user.role === 'owner';
+const IS_ADMIN = () => state.user && (state.user.role === 'owner' || state.user.role === 'admin');
+
+const PAGES = {
+  dashboard:   { title: 'الرئيسية', crumb: 'إدارة التراخيص / الرئيسية' },
+  files:       { title: 'إدارة الملفات', crumb: 'إدارة التراخيص / الملفات' },
+  activations: { title: 'بوابة التفعيلات', crumb: 'إدارة التراخيص / التفعيلات' },
+  branding:    { title: 'الشعار والحقوق', crumb: 'إدارة التراخيص / شعارات وحقوق' },
+  webhooks:    { title: 'الويب هوكس', crumb: 'إدارة التراخيص / الويب هوكس' },
+  logs:        { title: 'السجلات', crumb: 'الأمان والمراقبة / السجلات' },
+  blacklist:   { title: 'القائمة السوداء', crumb: 'الأمان والمراقبة / القائمة السوداء' },
+  audit:       { title: 'سجل التدقيق', crumb: 'الأمان والمراقبة / سجل التدقيق' },
+  storeadmin:  { title: 'إدارة المتجر', crumb: 'المتجر والبيع / إدارة المتجر' },
+  project:     { title: 'مشفر المشاريع', crumb: 'الأدوات / مشفر المشاريع' },
+  api:         { title: 'توثيق API', crumb: 'الأدوات / توثيق API' },
+  notifications:{ title: 'الإشعارات', crumb: 'الحساب / الإشعارات' },
+  subscription:{ title: 'اشتراكي', crumb: 'الحساب / اشتراكي' },
+  support:     { title: 'الدعم الفني', crumb: 'الحساب / الدعم الفني' },
+  settings:    { title: 'الإعدادات', crumb: 'الحساب / الإعدادات' },
+  changelog:   { title: 'سجل التحديثات', crumb: 'الحساب / سجل التحديثات' },
+  system:      { title: 'حالة النظام', crumb: 'الحساب / حالة النظام' }
+};
+
+/* ============ HELPERS ============ */
+function toast(msg) {
+  const el = $('toast'); if (!el) return;
+  el.textContent = msg;
+  el.classList.add('show');
+  clearTimeout(el._t);
+  el._t = setTimeout(() => el.classList.remove('show'), 2600);
+}
+function esc(s) {
+  return String(s == null ? '' : s).replace(/&/g, '&amp;').replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+}
+function debounce(fn, ms) { let t; return (...a) => { clearTimeout(t); t = setTimeout(() => fn(...a), ms); }; }
+function download(name, content) {
+  const b = new Blob([content], { type: 'text/plain;charset=utf-8' });
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(b); a.download = name;
+  document.body.appendChild(a); a.click(); a.remove();
+}
+function starsHTML(n) { n = Number(n) || 0; return '★'.repeat(n) + '☆'.repeat(Math.max(0, 5 - n)); }
+function closeModal(id) { const el = $(id); if (el) el.style.display = 'none'; }
+function on(id, ev, fn) { const el = $(id); if (el) el.addEventListener(ev, fn); }
+
+async function api(path, body, method) {
+  const opt = { method: method || (body ? 'POST' : 'GET'), headers: {}, credentials: 'same-origin' };
+  if (body) { opt.headers['Content-Type'] = 'application/json'; opt.body = JSON.stringify(body); }
+  try {
+    const r = await fetch(path, opt);
+    const j = await r.json().catch(() => ({}));
+    if (!r.ok && j.message) toast(j.message);
+    return j;
+  } catch (e) { toast('تعذر الاتصال بالخادم'); return {}; }
+}
+
+/* days left — never NaN */
+function daysLeftOf(sub) {
+  if (!sub) return null;
+  if (typeof sub.days_left === 'number' && !isNaN(sub.days_left)) return sub.days_left;
+  const ms = sub.expires_ms != null ? Number(sub.expires_ms)
+           : (sub.expires_at ? new Date(sub.expires_at).getTime() : NaN);
+  if (!ms || isNaN(ms)) return null;
+  return Math.max(0, Math.ceil((ms - Date.now()) / 86400000));
+}
+function fmtDate(v) {
+  if (!v) return '—';
+  const d = new Date(typeof v === 'number' ? v : String(v));
+  return isNaN(d.getTime()) ? '—' : d.toLocaleDateString('ar-EG');
+}
+
+/* ============ AUTH ============ */
+let AUTH_MODE = { ownerExists: false };
+async function loadAuthMode() {
+  AUTH_MODE = await api('/api/auth-mode') || {};
+  document.querySelectorAll('.auth-tab').forEach(t => {
+    const k = t.dataset.aftab;
+    if (k === 'register') t.style.display = AUTH_MODE.ownerExists ? 'none' : '';
+    if (k === 'login')    t.style.display = AUTH_MODE.ownerExists ? '' : 'none';
+    if (k === 'code')     t.style.display = AUTH_MODE.ownerExists ? '' : 'none';
+  });
+}
+function showAuthTab(tab) {
+  document.querySelectorAll('.auth-tab').forEach(b => b.classList.toggle('active', b.dataset.aftab === tab));
+  $('f-code').style.display     = tab === 'code'     ? '' : 'none';
+  $('f-login').style.display    = tab === 'login'    ? '' : 'none';
+  $('f-register').style.display = tab === 'register' ? '' : 'none';
+  ['code-err', 'login-err', 'reg-err'].forEach(id => { const e = $(id); if (e) e.textContent = ''; });
+}
+async function openAuth(preferred) {
+  $('auth-modal').style.display = '';
+  await loadAuthMode();
+  showAuthTab(AUTH_MODE.ownerExists ? (preferred === 'login' ? 'login' : 'code') : 'register');
+}
+function closeAuth() { $('auth-modal').style.display = 'none'; }
+
+['landing-login', 'landing-login2'].forEach(id => on(id, 'click', () => openAuth('login')));
+['landing-register', 'landing-register2'].forEach(id => on(id, 'click', () => openAuth('code')));
+on('auth-close', 'click', closeAuth);
+on('auth-modal', 'click', e => { if (e.target === $('auth-modal')) closeAuth(); });
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') { closeAuth(); closeModal('file-modal'); closeModal('act-modal'); }
+});
+document.querySelectorAll('.auth-tab').forEach(b => b.addEventListener('click', () => showAuthTab(b.dataset.aftab)));
+
+on('f-code', 'submit', async e => {
+  e.preventDefault();
+  const code = $('code-input').value.trim();
+  if (!code) { $('code-err').textContent = 'أدخل الكود'; return; }
+  const r = await api('/api/activate', { code });
+  if (r.ok) { state.user = r.user; enterApp(); } else $('code-err').textContent = r.message || 'كود غير صحيح';
+});
+on('f-login', 'submit', async e => {
+  e.preventDefault();
+  const r = await api('/api/login', { email: $('login-user').value.trim(), password: $('login-pass').value });
+  if (r.ok) { state.user = r.user; enterApp(); } else $('login-err').textContent = r.message || 'خطأ في الدخول';
+});
+on('f-register', 'submit', async e => {
+  e.preventDefault();
+  const r = await api('/api/register', { email: $('reg-user').value.trim(), password: $('reg-pass').value });
+  if (r.ok) { state.user = r.user; enterApp(); } else $('reg-err').textContent = r.message || 'تعذر الإنشاء';
+});
+on('btn-logout', 'click', async () => { await api('/api/logout', {}, 'POST'); location.reload(); });
+
+/* ============ NAVIGATION ============ */
+function nav(page) {
+  if (!PAGES[page]) page = 'dashboard';
+  currentPage = page;
+  document.querySelectorAll('.km-page').forEach(p => p.style.display = 'none');
+  const sec = $('page-' + page);
+  if (sec) sec.style.display = '';
+  document.querySelectorAll('.sb-item').forEach(b => b.classList.toggle('active', b.dataset.page === page));
+  $('page-title').textContent = PAGES[page].title;
+  $('page-crumb').textContent = PAGES[page].crumb;
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+  document.body.classList.remove('km-open');
+  renderPage(page);
+}
+function renderPage(page) {
+  if (page === 'dashboard') renderDashboard();
+  else if (page === 'files') renderFiles();
+  else if (page === 'activations') renderActivations();
+  else if (page === 'subscription') renderSubscription();
+  else if (page === 'notifications') renderNotifications();
+  else if (page === 'settings') renderSettings();
+  else if (page === 'system') renderSystem();
+  else if (page === 'storeadmin') refreshStoreAdmin();
+  else if (page === 'branding') renderBranding();
+  else if (page === 'logs') renderLogs();
+  else if (page === 'blacklist') renderBlacklist();
+  else if (page === 'audit') renderAudit();
+}
+document.querySelectorAll('.sb-item').forEach(b => b.addEventListener('click', () => nav(b.dataset.page)));
+document.querySelectorAll('[data-goto]').forEach(b => b.addEventListener('click', () => nav(b.dataset.goto)));
+on('km-burger', 'click', () => document.body.classList.toggle('km-open'));
+on('sb-hamb', 'click', () => document.body.classList.toggle('km-open'));
+
+/* ============ APP ENTRY ============ */
+async function enterApp() {
+  closeAuth();
+  $('screen-auth').style.display = 'none';
+  $('screen-app').style.display = '';
+  document.body.classList.remove('km-admin', 'km-owner', 'km-nosub');
+  if (IS_OWNER()) document.body.classList.add('km-owner');
+  else if (state.user.role === 'admin') document.body.classList.add('km-admin');
+  await refreshAll();
+  nav('dashboard');
+}
+function renderUserChip() {
+  const role = state.user.role;
+  const label = role === 'owner' ? 'OWNER' : role === 'admin' ? 'ADMIN' : role === 'guest' ? 'ضيف' : 'عميل';
+  $('user-chip').innerHTML =
+    '<div class="uc-avatar">' + esc((state.user.username || 'U').charAt(0).toUpperCase()) + '</div>' +
+    '<div class="uc-info"><b>' + esc(state.user.username) + '</b><span>' + label + '</span></div>';
+}
+async function refreshAll() {
+  const me = await api('/api/me');
+  if (!me.user) { location.reload(); return; }
+  state.user = me.user;
+  state.sub = me.subscription || null;
+  renderUserChip();
+  state.packages = await api('/api/packages') || [];
+  renderPage(currentPage);
+}
+
+/* ============ DASHBOARD ============ */
+async function renderDashboard() {
+  const mine = await api('/api/my-files') || [];
+  const active = mine.filter(f => f.active !== false).length;
+  const dl = daysLeftOf(state.sub);
+  $('dash-stats').innerHTML = `
+    <div class="dash-stat"><div class="ds-ic">🔐</div><b>${mine.length}</b><span>سكربت مشفّر</span></div>
+    <div class="dash-stat"><div class="ds-ic">✅</div><b>${active}</b><span>تفعيل نشط</span></div>
+    <div class="dash-stat"><div class="ds-ic">⛔</div><b>${mine.length - active}</b><span>تفعيل موقوف</span></div>
+    <div class="dash-stat"><div class="ds-ic">⏳</div><b>${dl === null ? '∞' : dl}</b><span>يوم متبقي</span></div>`;
+  const box = document.querySelector('.bot-status-box');
+  if (box) box.style.display = 'none';
+  if ($('bot-state')) $('bot-state').textContent = '';
+  if ($('bot-side')) $('bot-side').innerHTML = '';
+  if ($('bot-stats')) $('bot-stats').innerHTML = '';
+  const pulse = $('pulse-wrap');
+  if (pulse) pulse.innerHTML = '<div class="lic-empty">إحصائيات التشفير تظهر هنا مع مرور الوقت.</div>';
+}
+
+
+/* ============ FILES ============ */
+async function renderFiles() {
+  const list = IS_OWNER() ? (await api('/api/admin/files') || []) : (await api('/api/my-files') || []);
+  state.files = list;
+  const tb = $('files-tbody');
+  if (!tb) return;
+  if (!list.length) { tb.innerHTML = '<tr><td colspan="8" class="lic-empty">لا توجد ملفات مشفّرة بعد.</td></tr>'; return; }
+  tb.innerHTML = list.map(f => `<tr>
+    <td><b>${esc(f.name)}</b></td>
+    <td>Lua</td>
+    <td>${esc(f.owner_name || '-')}</td>
+    <td style="direction:ltr">${f.ip ? esc(f.ip) : 'بدون IP (للجميع)'}</td>
+    <td>${f.size_kb || 0} KB</td>
+    <td>${fmtDate(f.encrypted_at)}</td>
+    <td>${f.active === false ? '<span class="lic-badge rejected">موقوف</span>' : '<span class="lic-badge paid">نشط</span>'}</td>
+    <td style="white-space:nowrap">
+      <button class="btn ghost sm" data-fdl="${f.id}">تحميل</button>
+      <button class="btn ghost sm danger" data-fdel="${f.id}">حذف</button>
+    </td>
+  </tr>`).join('');
+  tb.querySelectorAll('[data-fdl]').forEach(b => b.addEventListener('click', () => {
+    const f = list.find(x => String(x.id) === b.dataset.fdl);
+    if (f && f.encrypted_code) download('protected_' + f.name, f.encrypted_code);
+    else toast('لا يوجد كود محفوظ لهذا الملف');
+  }));
+  tb.querySelectorAll('[data-fdel]').forEach(b => b.addEventListener('click', async () => {
+    if (!confirm('حذف الملف نهائياً؟')) return;
+    await api('/api/my-files/' + b.dataset.fdel + '/delete', {}, 'POST');
+    toast('تم الحذف'); renderFiles();
+  }));
+}
+
+/* ============ ACTIVATIONS PORTAL ============ */
+async function renderActivations() {
+  const q = (($('act-search') || {}).value || '').trim().toLowerCase();
+  const st = (($('act-status') || {}).value || '');
+  let list = IS_OWNER() ? (await api('/api/admin/files') || []) : (await api('/api/my-files') || []);
+  if (q) list = list.filter(f => (f.name + ' ' + (f.ip || '') + ' ' + (f.owner_name || '')).toLowerCase().includes(q));
+  if (st === 'active') list = list.filter(f => f.active !== false);
+  if (st === 'revoked' || st === 'expired') list = list.filter(f => f.active === false);
+  const tb = $('acts-tbody');
+  if (!tb) return;
+  if (!list.length) { tb.innerHTML = '<tr><td colspan="7" class="lic-empty">لا توجد سكربتات مشفّرة بعد — شفّر سكربتك من صفحة «مشفر المشاريع».</td></tr>'; return; }
+  tb.innerHTML = list.map(f => `<tr>
+    <td><b>${esc(f.name)}</b></td>
+    <td><code class="mini">${esc(f.id)}</code></td>
+    <td>${esc(f.owner_name || 'أنا')}</td>
+    <td style="direction:ltr">${f.ip ? esc(f.ip) : '🌍 بدون IP (يشتغل للجميع)'}</td>
+    <td>${fmtDate(f.encrypted_at)}</td>
+    <td>${f.active === false ? '<span class="lic-badge rejected">موقوف</span>' : '<span class="lic-badge paid">مفعّل</span>'}</td>
+    <td style="white-space:nowrap">
+      ${f.active === false
+        ? `<button class="btn ghost sm" data-astart="${f.id}">▶ إعادة التفعيل</button>`
+        : `<button class="btn ghost sm danger" data-astop="${f.id}">⛔ إيقاف التفعيل</button>`}
+      <button class="btn ghost sm" data-adl="${f.id}">⬇️</button>
+    </td>
+  </tr>`).join('');
+  tb.querySelectorAll('[data-astop]').forEach(b => b.addEventListener('click', async () => {
+    await api('/api/my-files/' + b.dataset.astop + '/stop', {}, 'POST');
+    toast('⛔ تم إيقاف التفعيل'); renderActivations();
+  }));
+  tb.querySelectorAll('[data-astart]').forEach(b => b.addEventListener('click', async () => {
+    await api('/api/my-files/' + b.dataset.astart + '/start', {}, 'POST');
+    toast('✅ تم إعادة التفعيل'); renderActivations();
+  }));
+  tb.querySelectorAll('[data-adl]').forEach(b => b.addEventListener('click', () => {
+    const f = list.find(x => String(x.id) === b.dataset.adl);
+    if (f && f.encrypted_code) download('protected_' + f.name, f.encrypted_code);
+  }));
+}
+on('act-search', 'input', debounce(() => renderActivations(), 350));
+on('act-status', 'change', () => renderActivations());
+
+/* ============ SUBSCRIPTION ============ */
+async function renderSubscription() {
+  const me = await api('/api/me');
+  state.sub = me.subscription || null;
+  const s = state.sub;
+  const box = $('subs-list');
+  if (!s || !s.active) {
+    if (box) box.innerHTML = '<div class="lic-empty">لا يوجد اشتراك نشط حالياً.</div>';
+    if ($('sub-status')) $('sub-status').textContent = 'لا يوجد';
+    return;
+  }
+  const dl = daysLeftOf(s);
+  const unlimited = dl === null;
+  const warn = !unlimited && dl <= 3;
+  if (box) box.innerHTML = `
+    <table class="lic-table">
+      <thead><tr><th>الباقة</th><th>المتبقي</th><th>ينتهي في</th><th>عمليات التشفير</th><th>الحالة</th></tr></thead>
+      <tbody><tr>
+        <td><b>${esc(s.plan)}</b></td>
+        <td><span class="lic-badge ${warn ? 'rejected' : 'paid'}">${unlimited ? '∞ غير محدود' : (dl <= 0 ? 'ينتهي اليوم' : dl + ' يوم')}</span></td>
+        <td>${unlimited ? '—' : fmtDate(s.expires_ms || s.expires_at)}</td>
+        <td>${s.encrypts_used || 0}</td>
+        <td><span class="lic-badge paid">نشط</span></td>
+      </tr></tbody>
+    </table>`;
+  if ($('sub-status')) $('sub-status').textContent = s.plan + (unlimited ? ' — غير محدود' : ' — متبقي ' + dl + ' يوم');
+}
+
+/* ============ NOTIFICATIONS / SETTINGS / SYSTEM ============ */
+async function renderNotifications() {
+  if ($('announce-box')) $('announce-box').innerHTML = '<div class="note">📢 مرحباً بكم في منصة Ahmed Dev KeyMaster</div>';
+  const dl = daysLeftOf(state.sub);
+  if ($('notif-subs')) $('notif-subs').innerHTML = dl === null
+    ? '<div class="note">اشتراكك غير محدود ✅</div>'
+    : `<div class="note">متبقي على اشتراكك <b>${dl}</b> يوم.</div>`;
+}
+async function renderSettings() {
+  const st = IS_OWNER() ? (await api('/api/admin/settings') || {}) : {};
+  if ($('st-discord')) $('st-discord').value = st.discord_link || 'https://discord.gg/cfw3';
+  if ($('st-brand')) $('st-brand').value = st.brand || 'Ahmed KeyMaster';
+}
+async function renderSystem() {
+  if (!$('sys-details')) return;
+  $('sys-details').innerHTML = `
+    <div class="bs-item"><span>المنصة</span><b>Node.js</b></div>
+    <div class="bs-item"><span>الحالة</span><b>Online</b></div>`;
+}
+function renderBranding() {}
+function renderLogs() {}
+function renderBlacklist() {}
+function renderAudit() {}
+
+/* ============ PROJECT ENCRYPTOR ============ */
+(function() {
+  const dz = $('dropzone');
+  if (dz) {
+    dz.addEventListener('click', () => $('file-input').click());
+    ['dragover', 'dragenter'].forEach(ev => dz.addEventListener(ev, e => { e.preventDefault(); dz.classList.add('over'); }));
+    ['dragleave', 'drop'].forEach(ev => dz.addEventListener(ev, e => { e.preventDefault(); dz.classList.remove('over'); }));
+    dz.addEventListener('drop', e => {
+      const f = e.dataTransfer.files && e.dataTransfer.files[0];
+      if (f) readSrcFile(f);
+    });
+  }
+  on('file-input', 'change', e => { const f = e.target.files && e.target.files[0]; if (f) readSrcFile(f); });
+})();
+function readSrcFile(f) {
+  state.outName = f.name || 'script.lua';
+  const r = new FileReader();
+  r.onload = () => { $('file-src').value = r.result || ''; toast('📄 تم قراءة الملف: ' + f.name); };
+  r.readAsText(f);
+}
+on('btn-encrypt', 'click', async () => {
+  const src = ($('file-src').value || '').trim();
+  if (!src) { $('enc-msg').textContent = '⚠️ الصق الكود أو ارفع ملف أولاً'; return; }
+  const ip = ($('file-ip').value || '').trim();
+  const name = state.outName || 'script.lua';
+  $('enc-msg').textContent = '⏳ جاري التشفير...';
+  const r = await api('/api/encrypt', { src, allowed_ip: ip, file_name: name });
+  if (!r.ok) { $('enc-msg').textContent = r.message || 'تعذر التشفير'; return; }
+  $('enc-msg').textContent = '';
+  state.outCode = r.code;
+  $('enc-empty').style.display = 'none';
+  $('enc-result').style.display = '';
+  $('enc-name').textContent = r.fileName || name;
+  $('enc-pill').textContent = ip ? ('🔒 مربوط بالـ IP: ' + ip) : '🌍 متاح للجميع (بدون IP)';
+  $('enc-ips').innerHTML = ip
+    ? '<span class="lic-badge paid">IP مسموح: ' + esc(ip) + '</span>'
+    : '<span class="lic-badge paid">✅ يعمل عند أي شخص يشغّل السكربت</span>';
+  $('pre-out').textContent = r.code;
+  toast('🔒 تم التشفير بنجاح');
+});
+on('btn-copy', 'click', () => {
+  if (!state.outCode) return;
+  navigator.clipboard.writeText(state.outCode).then(() => toast('📋 تم النسخ'));
+});
+on('btn-download', 'click', () => {
+  if (!state.outCode) return;
+  download('protected_' + (state.outName || 'script.lua'), state.outCode);
+});
+
+/* ============ STORE ADMIN (Owner Codes) ============ */
+async function refreshStoreAdmin() {
+  document.querySelectorAll('#store-tabs .tab').forEach((tab, i) => {
+    tab.onclick = () => {
+      document.querySelectorAll('#store-tabs .tab').forEach(b => b.classList.remove('active'));
+      tab.classList.add('active');
+      document.querySelectorAll('#page-storeadmin .apane').forEach(p => p.style.display = 'none');
+      const pane = $('apane-' + tab.dataset.atab);
+      if (pane) pane.style.display = '';
+      renderStorePane(tab.dataset.atab);
+    };
+  });
+  renderStorePane('codes');
+}
+async function renderStorePane(which) {
+  if (which === 'codes') return renderCodes();
+  if (which === 'users') return renderUsersAdmin();
+  const el = $('apane-' + which);
+  if (el) el.innerHTML = '<div class="card"><div class="lic-empty">قسم غير مفعّل حالياً.</div></div>';
+}
+async function renderCodes() {
+  const list = await api('/api/admin/codes') || [];
+  const el = $('apane-codes');
+  el.innerHTML = `
+    <div class="card">
+      <h3>🎫 إنشاء أكواد تفعيل</h3>
+      <div class="row">
+        <div class="field" style="flex:1"><label>عدد الأيام</label><input id="c-days" type="number" min="1" value="30"></div>
+        <div class="field" style="flex:1"><label>كود مخصص (اختياري)</label><input id="c-custom" type="text" placeholder="MYCODE-2026"></div>
+        <div class="field" style="flex:1"><label>الكمية</label><input id="c-count" type="number" min="1" value="1"></div>
+        <button class="btn primary" id="c-gen" style="align-self:flex-end">＋ إنشاء</button>
+      </div>
+      <div class="mini" id="c-msg"></div>
+    </div>
+    <div class="card" style="margin-top:16px">
+      <h3>🎫 الأكواد (${list.length})</h3>
+      <table class="lic-table">
+        <thead><tr><th>#</th><th>الكود</th><th>الباكة</th><th>الحالة</th><th>مستخدم بواسطة</th><th>تاريخ الإنشاء</th><th></th></tr></thead>
+        <tbody>${list.map(c => `<tr>
+          <td>${c.id}</td>
+          <td><code>${esc(c.code)}</code></td>
+          <td>${esc(c.package_name)}</td>
+          <td>${c.status === 'used' ? '<span class="lic-badge rejected">مستخدم</span>' : '<span class="lic-badge paid">جديد</span>'}</td>
+          <td>${esc(c.used_by_name || '—')}</td>
+          <td>${fmtDate(c.created_at)}</td>
+          <td>${c.status === 'unused' ? `<button class="btn ghost sm danger" data-cburn="${c.id}">حرق</button>` : ''}</td>
+        </tr>`).join('') || '<tr><td colspan="7" class="lic-empty">لا توجد أكواد بعد</td></tr>'}</tbody>
+      </table>
+    </div>`;
+  on('c-gen', 'click', async () => {
+    const r = await api('/api/admin/codes', {
+      days: Number($('c-days').value) || 30,
+      custom_code: $('c-custom').value.trim(),
+      count: Number($('c-count').value) || 1
+    }, 'POST');
+    if (r.ok) { toast('✅ تم إنشاء ' + r.codes.length + ' كود'); renderCodes(); }
+    else $('c-msg').textContent = r.message || 'خطأ';
+  });
+  el.querySelectorAll('[data-cburn]').forEach(b => b.addEventListener('click', async () => {
+    if (!confirm('حرق هذا الكود؟')) return;
+    await api('/api/admin/codes/' + b.dataset.cburn + '/burn', {}, 'POST');
+    renderCodes();
+  }));
+}
+async function renderUsersAdmin() {
+  const list = await api('/api/admin/users') || [];
+  const el = $('apane-users');
+  el.innerHTML = `<div class="card"><h3>👥 المستخدمون (${list.length})</h3>
+    <table class="lic-table"><thead><tr><th>المستخدم</th><th>الدور</th><th>الباقة</th><th>تشفير</th><th>ينتهي</th></tr></thead>
+    <tbody>${list.map(u => `<tr>
+      <td>${esc(u.username)}</td>
+      <td>${esc(u.role)}</td>
+      <td>${esc((u.subscription && u.subscription.plan) || '—')}</td>
+      <td>${u.enc_count || 0}</td>
+      <td>${u.subscription && u.subscription.expires_at ? fmtDate(u.subscription.expires_at) : '∞'}</td>
+    </tr>`).join('') || '<tr><td colspan="5" class="lic-empty">لا يوجد مستخدمون</td></tr>'}</tbody></table></div>`;
+}
+
+/* ============ INIT ============ */
+(async function init() {
+  await loadAuthMode();
+  const me = await api('/api/me').catch(() => ({}));
+  if (me && me.user) {
+    state.user = me.user;
+    state.sub = me.subscription || null;
+    enterApp();
+  } else {
+    $('screen-auth').style.display = '';
+    $('screen-app').style.display = 'none';
+  }
+})();
+
+</script>
+</body>
+</html>
